@@ -12,7 +12,7 @@ public class TempActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        startActivity(new Intent(this, HomeActivity.class), true);
+        startActivity(new Intent(this, HomeActivity.class), false);
     }
 }
 
