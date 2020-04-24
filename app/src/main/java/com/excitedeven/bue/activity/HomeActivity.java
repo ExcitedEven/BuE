@@ -1,6 +1,7 @@
 package com.excitedeven.bue.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -10,11 +11,13 @@ import com.excitedeven.bue.R;
 import com.excitedeven.bue.fragment.AllOrderFragment;
 import com.excitedeven.bue.fragment.HomeFragment;
 import com.excitedeven.bue.fragment.MineFragment;
+import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends BaseActivity {
 
     SectionPagerAdapter pagerAdapter;
     ViewPager pager;
+    TabLayout tabLayout;
 
     @Override
     protected int getLayoutId() {
@@ -26,6 +29,9 @@ public class HomeActivity extends BaseActivity {
         pagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
         pager = findViewById(R.id.home_page);
         pager.setAdapter(pagerAdapter);
+
+        tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 
     private class SectionPagerAdapter extends FragmentPagerAdapter {
@@ -50,6 +56,20 @@ public class HomeActivity extends BaseActivity {
         @Override
         public int getCount() {
             return 3;
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getResources().getText(R.string.home);
+                case 1:
+                    return getResources().getText(R.string.order);
+                case 2:
+                    return getResources().getText(R.string.mine);
+            }
+            return null;
         }
     }
 }

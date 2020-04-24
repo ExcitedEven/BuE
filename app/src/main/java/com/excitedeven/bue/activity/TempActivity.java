@@ -7,7 +7,7 @@ import com.excitedeven.bue.R;
 public class TempActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_all_orders;
+        return R.layout.fragment_all_order;
     }
 
     @Override
