@@ -1,5 +1,6 @@
 package com.excitedeven.bue.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +14,22 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
-import com.excitedeven.bue.bean.Store;
+import com.excitedeven.bue.activity.ShopActivity;
+import com.excitedeven.bue.bean.Shop;
 
 import java.util.ArrayList;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<Store> storeList;
-    private Store store;
+    private ArrayList<Shop> shopList;
+    private Shop shop;
 
-    public HomeAdapter(ArrayList<Store> storeList) {
-        this.storeList = storeList;
+    public HomeAdapter(ArrayList<Shop> shopList) {
+        this.shopList = shopList;
     }
 
-    public HomeAdapter(Store store) {
-        this.store = store;
+    public HomeAdapter(Shop shop) {
+        this.shop = shop;
     }
 
     @NonNull
@@ -42,8 +44,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         //TODO 修改Image
         ((HomeViewHolder) holder).slogo.setImageResource(R.drawable.ic_launcher_foreground);
-        ((HomeViewHolder) holder).sname.setText(storeList.get(position).getSname());
-        ((HomeViewHolder) holder).sdescription.setText(storeList.get(position).getSdescription());
+        ((HomeViewHolder) holder).sname.setText(shopList.get(position).getSname());
+        ((HomeViewHolder) holder).sdescription.setText(shopList.get(position).getSdescription());
 
         /**
          * HomeItem的点击事件
@@ -53,6 +55,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View v) {
                 //TODO HomeItem的点击事件
                 Toast.makeText(BuEApplication.getInstance().getContext(), position + "Onclick", Toast.LENGTH_SHORT).show();
+                BuEApplication.getInstance().setShop(shopList.get(position));
+                Intent intent = new Intent(BuEApplication.getInstance().getContext(), ShopActivity.class);
+                BuEApplication.getInstance().getContext().startActivity(intent);
                 /**
                  * 示例
                  * BuEApplication.getInstance().getContext().startActivity(new Intent(BuEApplication.getInstance().getContext(), LoginActivity.class));
@@ -63,7 +68,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return storeList.size();
+        return shopList.size();
     }
 
     private class HomeViewHolder extends ViewHolder {

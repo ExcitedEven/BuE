@@ -4,10 +4,12 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.excitedeven.bue.bean.Shop;
 import com.excitedeven.bue.bean.User;
 
 public class BuEApplication extends Application {
     private User user;
+    private Shop shop;
     private static BuEApplication mInstance;
     private Intent intent;
     private Context context;
@@ -49,5 +51,13 @@ public class BuEApplication extends Application {
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 }

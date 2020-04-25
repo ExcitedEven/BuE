@@ -4,16 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.adapter.HomeAdapter;
-import com.excitedeven.bue.bean.Store;
+import com.excitedeven.bue.bean.Shop;
 
 import java.util.ArrayList;
 
@@ -46,15 +44,16 @@ public class HomeFragment extends Fragment {
      * @return 返回商家类表
      */
     //TODO 获取真实数据
-    private ArrayList<Store> getStoreList() {
-        ArrayList<Store> storeArrayList = new ArrayList<Store>();
-        Store store = new Store();
-        store.setSname("even");
-        store.setSdescription("ForTest");
+    private ArrayList<Shop> getStoreList() {
+        ArrayList<Shop> shopArrayList = new ArrayList<Shop>();
+        Shop shop;
         for (int i = 0; i <= 100; i++) {
-            storeArrayList.add(store);
+            shop = new Shop();
+            shop.setSname("Even" + i);
+            shop.setSdescription("ForTest" + i);
+            shopArrayList.add(shop);
         }
-        return storeArrayList;
+        return shopArrayList;
     }
 
     public void initRecyclerView() {

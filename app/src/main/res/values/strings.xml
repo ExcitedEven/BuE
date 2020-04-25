@@ -5,4 +5,7 @@
     <string name="order">订单</string>
     <string name="mine">我的</string>
 
+    <string name="shop_menu">点单</string>
+    <string name="shop_info">商家信息</string>
+
 </resources>

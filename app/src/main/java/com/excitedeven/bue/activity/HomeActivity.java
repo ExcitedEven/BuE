@@ -2,7 +2,6 @@ package com.excitedeven.bue.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -17,9 +16,9 @@ import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends BaseActivity {
 
-    SectionPagerAdapter pagerAdapter;
-    ViewPager pager;
-    TabLayout tabLayout;
+    HomePagerAdapter homePagerAdapter;
+    ViewPager homePager;
+    TabLayout homeTabLayout;
 
     @Override
     protected int getLayoutId() {
@@ -29,19 +28,19 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void init() {
         BuEApplication.getInstance().setContext(this);
-        pagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
-        pager = findViewById(R.id.home_page);
-        pager.setAdapter(pagerAdapter);
+        homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager());
+        homePager = findViewById(R.id.home_page);
+        homePager.setAdapter(homePagerAdapter);
 
-        tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(pager);
+        homeTabLayout = findViewById(R.id.home_tabs);
+        homeTabLayout.setupWithViewPager(homePager);
     }
 
     /**
      * 管理ViewPager
      */
-    private class SectionPagerAdapter extends FragmentPagerAdapter {
-        public SectionPagerAdapter(@NonNull FragmentManager fm) {
+    private class HomePagerAdapter extends FragmentPagerAdapter {
+        public HomePagerAdapter(@NonNull FragmentManager fm) {
             super(fm);
         }
 
