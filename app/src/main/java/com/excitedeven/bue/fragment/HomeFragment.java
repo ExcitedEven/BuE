@@ -45,15 +45,15 @@ public class HomeFragment extends Fragment {
      */
     //TODO 获取真实数据
     private ArrayList<Shop> getStoreList() {
-        ArrayList<Shop> shopArrayList = new ArrayList<Shop>();
+        ArrayList<Shop> shopList = new ArrayList<Shop>();
         Shop shop;
         for (int i = 0; i <= 100; i++) {
             shop = new Shop();
             shop.setSname("Even" + i);
             shop.setSdescription("ForTest" + i);
-            shopArrayList.add(shop);
+             shopList.add(shop);
         }
-        return shopArrayList;
+        return  shopList;
     }
 
     public void initRecyclerView() {

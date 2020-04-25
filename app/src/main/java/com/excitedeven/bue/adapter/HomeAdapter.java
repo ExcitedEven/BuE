@@ -22,20 +22,15 @@ import java.util.ArrayList;
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<Shop> shopList;
-    private Shop shop;
 
     public HomeAdapter(ArrayList<Shop> shopList) {
         this.shopList = shopList;
     }
 
-    public HomeAdapter(Shop shop) {
-        this.shop = shop;
-    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item, parent, false);
         ViewHolder vh = new HomeViewHolder(view);
         return vh;
     }
