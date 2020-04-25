@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.bean.User;
 
@@ -56,6 +57,7 @@ public class LoginActivity extends BaseActivity {
         User user = new User();
         user.setUsername("Even");
         user.setId((long) 1);// 从数据库获取
+        startActivity(BuEApplication.getInstance().getIntent());
         finish();
     }
 

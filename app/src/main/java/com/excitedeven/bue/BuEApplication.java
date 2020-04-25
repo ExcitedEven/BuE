@@ -1,12 +1,14 @@
 package com.excitedeven.bue;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.excitedeven.bue.bean.User;
 
 public class BuEApplication extends Application {
     private User user;
     private static BuEApplication mInstance;
+    private Intent intent;
 
     public static BuEApplication getInstance() {
         return mInstance;
@@ -29,5 +31,13 @@ public class BuEApplication extends Application {
     public void clearUser() {
         this.user = null;
         //TODO 将本地的User也清除
+    }
+
+    public Intent getIntent() {
+        return intent;
+    }
+
+    public void setIntent(Intent intent) {
+        this.intent = intent;
     }
 }
