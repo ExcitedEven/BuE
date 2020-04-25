@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.fragment.AllOrderFragment;
 import com.excitedeven.bue.fragment.HomeFragment;
@@ -27,6 +28,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        BuEApplication.getInstance().setContext(this);
         pagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
         pager = findViewById(R.id.home_page);
         pager.setAdapter(pagerAdapter);

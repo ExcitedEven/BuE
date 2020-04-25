@@ -1,15 +1,16 @@
 package com.excitedeven.bue.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.adapter.HomeAdapter;
 import com.excitedeven.bue.bean.Store;
@@ -21,6 +22,10 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
 
+    private HomeAdapter homeAdapter;
+    private View Layout;
+    private RecyclerView homeRecyclerView;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -30,18 +35,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View Layout = inflater.inflate(R.layout.fragment_home, container, false);
-        RecyclerView homeRecyclerView = Layout.findViewById(R.id.home_list);
-        Context context;
-        HomeAdapter homeAdapter = new HomeAdapter(getStoreList());
-        homeRecyclerView.setAdapter(homeAdapter);
-        homeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-//        homeRecyclerView.setHasFixedSize(true);
+        Layout = inflater.inflate(R.layout.fragment_home, container, false);
+        initRecyclerView();
         return Layout;
     }
 
     /**
      * 获取商家类
+     *
      * @return 返回商家类表
      */
     //TODO 获取真实数据
@@ -54,5 +55,12 @@ public class HomeFragment extends Fragment {
             storeArrayList.add(store);
         }
         return storeArrayList;
+    }
+
+    public void initRecyclerView() {
+        homeRecyclerView = Layout.findViewById(R.id.home_list);
+        homeAdapter = new HomeAdapter(getStoreList());
+        homeRecyclerView.setAdapter(homeAdapter);
+        homeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
     }
 }

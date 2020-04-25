@@ -1,6 +1,7 @@
 package com.excitedeven.bue;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 
 import com.excitedeven.bue.bean.User;
@@ -9,6 +10,7 @@ public class BuEApplication extends Application {
     private User user;
     private static BuEApplication mInstance;
     private Intent intent;
+    private Context context;
 
     public static BuEApplication getInstance() {
         return mInstance;
@@ -39,5 +41,13 @@ public class BuEApplication extends Application {
 
     public void setIntent(Intent intent) {
         this.intent = intent;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }
