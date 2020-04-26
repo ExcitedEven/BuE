@@ -1,5 +1,6 @@
 package com.excitedeven.bue.activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ public class LoginActivity extends BaseActivity {
                 login();
                 break;
             case R.id.txt_toReg:
-//                startActivity(new Intent(this, RegActivity.class));
+                startActivity(new Intent(this, RegisterActivity.class), false);
                 break;
         }
     }
@@ -58,6 +59,8 @@ public class LoginActivity extends BaseActivity {
         user.setUsername("Even");
         user.setId(1);// 从数据库获取
         user.setAdder("火星");
+        user.setPhone(phone);
+        user.setPwd(pwd);
         user.setOrderList(null);
         BuEApplication.getInstance().setUser(user);
         BuEApplication.getInstance().setOrderList(user.getOrderList());
