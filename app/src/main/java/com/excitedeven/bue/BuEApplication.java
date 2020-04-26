@@ -5,13 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.excitedeven.bue.bean.Food;
+import com.excitedeven.bue.bean.SelectedFood;
 import com.excitedeven.bue.bean.Shop;
 import com.excitedeven.bue.bean.User;
+
+import java.util.ArrayList;
 
 public class BuEApplication extends Application {
     private User user;
     private Shop shop;
     private Food food;
+    private ArrayList<SelectedFood> selectedFoodList;
     private static BuEApplication mInstance;
     private Intent intent;
     private Context context;
@@ -69,5 +73,13 @@ public class BuEApplication extends Application {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+
+    public ArrayList<SelectedFood> getSelectedFoodList() {
+        return selectedFoodList;
+    }
+
+    public void setSelectedFoodList(ArrayList<SelectedFood> selectedFoodList) {
+        this.selectedFoodList = selectedFoodList;
     }
 }

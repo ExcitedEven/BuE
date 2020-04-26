@@ -1,15 +1,19 @@
 package com.excitedeven.bue.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
+import com.excitedeven.bue.activity.CartActivity;
 import com.excitedeven.bue.adapter.ShopAdapter;
 import com.excitedeven.bue.bean.Food;
 
@@ -23,6 +27,7 @@ public class ShopMenuFragment extends Fragment {
     private View Layout;
     private ShopAdapter shopAdapter;
     private RecyclerView shopRecyclerView;
+    private Button addButton;
 
     public ShopMenuFragment() {
         // Required empty public constructor
@@ -34,6 +39,16 @@ public class ShopMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Layout = inflater.inflate(R.layout.fragment_shop_menu, container, false);
+
+        addButton = Layout.findViewById(R.id.cart);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 跳转购物车
+                startActivity(new Intent(BuEApplication.getInstance().getContext(), CartActivity.class));
+            }
+        });
+
         initRecyclerView();
         return Layout;
     }

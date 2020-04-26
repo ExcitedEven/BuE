@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.activity.ShopActivity;
+import com.excitedeven.bue.bean.SelectedArrayList;
 import com.excitedeven.bue.bean.Shop;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 //TODO HomeItem的点击事件
                 Toast.makeText(BuEApplication.getInstance().getContext(), position + "Onclick", Toast.LENGTH_SHORT).show();
                 BuEApplication.getInstance().setShop(shopList.get(position));
+                BuEApplication.getInstance().setSelectedFoodList(new SelectedArrayList());
                 Intent intent = new Intent(BuEApplication.getInstance().getContext(), ShopActivity.class);
                 BuEApplication.getInstance().getContext().startActivity(intent);
                 /**

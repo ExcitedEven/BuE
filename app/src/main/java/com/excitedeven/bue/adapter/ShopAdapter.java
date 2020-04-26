@@ -17,6 +17,7 @@ import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.activity.FoodActivity;
 import com.excitedeven.bue.bean.Food;
+import com.excitedeven.bue.bean.SelectedFood;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -49,6 +50,17 @@ public class ShopAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 //TODO 点击添加到购物车
                 Toast.makeText(BuEApplication.getInstance().getContext(), "菜品" + position + "添加", Toast.LENGTH_SHORT).show();
+                SelectedFood selectedFood = new SelectedFood();
+                selectedFood.setFood(foodList.get(position));
+                int number = BuEApplication.getInstance().getSelectedFoodList().indexOf(selectedFood);
+                if (number == -1) {
+                    selectedFood.setNumber(1);
+                    BuEApplication.getInstance().getSelectedFoodList().add(selectedFood);
+                } else {
+                    selectedFood = BuEApplication.getInstance().getSelectedFoodList().get(number);
+                    selectedFood.setNumber(selectedFood.getNumber() + 1);
+                    BuEApplication.getInstance().getSelectedFoodList().set(number, selectedFood);
+                }
             }
         });
 

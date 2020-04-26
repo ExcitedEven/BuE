@@ -1,5 +1,8 @@
 package com.excitedeven.bue.activity;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +20,10 @@ import com.google.android.material.tabs.TabLayout;
 
 public class ShopActivity extends BaseActivity {
 
-    ShopPagerAdapter shopPagerAdapter;
-    ViewPager shopPager;
-    TabLayout shopTabLayout;
+    private ShopPagerAdapter shopPagerAdapter;
+    private ViewPager shopPager;
+    private TextView textView;
+    private TabLayout shopTabLayout;
 
     @Override
     protected int getLayoutId() {
@@ -29,7 +33,7 @@ public class ShopActivity extends BaseActivity {
     @Override
     protected void init() {
         BuEApplication.getInstance().setContext(this);
-        TextView textView = findViewById(R.id.shop_name);
+        textView = findViewById(R.id.shop_name);
         textView.setText(BuEApplication.getInstance().getShop().getSname());
         shopPagerAdapter = new ShopPagerAdapter(getSupportFragmentManager());
         shopPager = findViewById(R.id.shop_page);
