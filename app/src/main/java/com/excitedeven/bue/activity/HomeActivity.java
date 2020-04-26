@@ -36,6 +36,12 @@ public class HomeActivity extends BaseActivity {
         homeTabLayout.setupWithViewPager(homePager);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BuEApplication.getInstance().setContext(this);
+    }
+
     /**
      * 管理ViewPager
      */
@@ -65,6 +71,7 @@ public class HomeActivity extends BaseActivity {
 
         /**
          * 设置toolbar的内容
+         *
          * @param position
          * @return
          */

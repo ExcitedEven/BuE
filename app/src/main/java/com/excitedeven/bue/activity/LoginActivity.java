@@ -61,4 +61,9 @@ public class LoginActivity extends BaseActivity {
         finish();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BuEApplication.getInstance().setContext(this);
+    }
 }

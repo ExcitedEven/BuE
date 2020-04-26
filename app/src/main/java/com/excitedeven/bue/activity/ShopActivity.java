@@ -1,8 +1,5 @@
 package com.excitedeven.bue.activity;
 
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -76,5 +73,11 @@ public class ShopActivity extends BaseActivity {
             }
             return null;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BuEApplication.getInstance().setContext(this);
     }
 }

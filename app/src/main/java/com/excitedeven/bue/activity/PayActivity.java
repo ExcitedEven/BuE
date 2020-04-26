@@ -1,11 +1,9 @@
 package com.excitedeven.bue.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 
+import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 
 public class PayActivity extends BaseActivity {
@@ -20,9 +18,18 @@ public class PayActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                finish();
-                startActivity(new Intent(PayActivity.this, HomeActivity.class), false);
+                //TODO 跳转订单页面
+                Intent intent = new Intent(PayActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent, false);
             }
         }, 1000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BuEApplication.getInstance().setContext(this);
     }
 }

@@ -53,6 +53,12 @@ public class FoodActivity extends BaseActivity {
         initview();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BuEApplication.getInstance().setContext(this);
+    }
+
     private void initview() {
         BuEApplication buEApplication = BuEApplication.getInstance();
         fimg.setImageResource(R.drawable.ic_launcher_foreground);
