@@ -1,5 +1,6 @@
 package com.excitedeven.bue.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ public class CartActivity extends BaseActivity {
             public void onClick(View v) {
                 //TODO 跳转支付, 带登陆判断
                 Toast.makeText(CartActivity.this, "结账", Toast.LENGTH_SHORT).show();
-
+                startActivity(new Intent(CartActivity.this, PayActivity.class), true);
             }
         });
 
