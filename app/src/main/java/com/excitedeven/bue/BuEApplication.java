@@ -90,6 +90,9 @@ public class BuEApplication extends Application {
      * @return
      */
     public Long getSumPrice() {
+        if (!hasSelectedFood()) {
+            return 0l;
+        }
         long sum = selectedFoodList.get(0).getSum();
         Iterator<SelectedFood> it = selectedFoodList.iterator();
 
@@ -98,5 +101,12 @@ public class BuEApplication extends Application {
         }
 
         return sum;
+    }
+
+    public boolean hasSelectedFood() {
+        if (selectedFoodList.size() == 0) {
+            return false;
+        }
+        return true;
     }
 }
