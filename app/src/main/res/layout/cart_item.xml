@@ -13,21 +13,21 @@
         android:id="@+id/cart_food_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/cart_food_name"
+        android:layout_toStartOf="@+id/cart_food_reduce"
         android:text="5元" />
 
     <Button
         android:id="@+id/cart_food_reduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/cart_food_number"
+        android:layout_toStartOf="@+id/cart_food_number"
         android:text="-" />
 
     <TextView
         android:id="@+id/cart_food_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/cart_food_add"
+        android:layout_toStartOf="@+id/cart_food_add"
         android:text="1" />
 
     <Button

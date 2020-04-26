@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.activity.FoodActivity;
+import com.excitedeven.bue.activity.ShopActivity;
 import com.excitedeven.bue.bean.Food;
 import com.excitedeven.bue.bean.SelectedFood;
 
@@ -70,7 +71,7 @@ public class ShopAdapter extends RecyclerView.Adapter {
                 //TODO ShopItem的点击事件
                 Toast.makeText(BuEApplication.getInstance().getContext(), "菜品" + position + "onClick", Toast.LENGTH_SHORT).show();
                 BuEApplication.getInstance().setFood(foodList.get(position));
-                BuEApplication.getInstance().getContext().startActivity(new Intent(BuEApplication.getInstance().getContext(), FoodActivity.class));
+                ((ShopActivity) BuEApplication.getInstance().getContext()).startActivity(new Intent(BuEApplication.getInstance().getContext(), FoodActivity.class), false);
             }
         });
     }

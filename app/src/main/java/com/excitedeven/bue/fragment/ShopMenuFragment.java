@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.activity.CartActivity;
+import com.excitedeven.bue.activity.ShopActivity;
 import com.excitedeven.bue.adapter.ShopAdapter;
 import com.excitedeven.bue.bean.Food;
 
@@ -45,7 +46,7 @@ public class ShopMenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO 跳转购物车
-                startActivity(new Intent(BuEApplication.getInstance().getContext(), CartActivity.class));
+                ((ShopActivity) BuEApplication.getInstance().getContext()).startActivity(new Intent(BuEApplication.getInstance().getContext(), CartActivity.class), false);
             }
         });
 

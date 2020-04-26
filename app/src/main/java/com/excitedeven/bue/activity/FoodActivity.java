@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
+import com.excitedeven.bue.bean.SelectedFood;
 
 public class FoodActivity extends BaseActivity {
 
@@ -35,6 +36,17 @@ public class FoodActivity extends BaseActivity {
             public void onClick(View v) {
                 //TODO 添加到购物车
                 Toast.makeText(FoodActivity.this, "商品" + fname.getText().toString() + "添加", Toast.LENGTH_SHORT).show();
+                SelectedFood selectedFood = new SelectedFood();
+                selectedFood.setFood(BuEApplication.getInstance().getFood());
+                int number = BuEApplication.getInstance().getSelectedFoodList().indexOf(selectedFood);
+                if (number == -1) {
+                    selectedFood.setNumber(1);
+                    BuEApplication.getInstance().getSelectedFoodList().add(selectedFood);
+                } else {
+                    selectedFood = BuEApplication.getInstance().getSelectedFoodList().get(number);
+                    selectedFood.setNumber(selectedFood.getNumber() + 1);
+                    BuEApplication.getInstance().getSelectedFoodList().set(number, selectedFood);
+                }
             }
         });
 

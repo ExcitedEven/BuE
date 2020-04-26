@@ -10,6 +10,7 @@ import com.excitedeven.bue.bean.Shop;
 import com.excitedeven.bue.bean.User;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class BuEApplication extends Application {
     private User user;
@@ -81,5 +82,21 @@ public class BuEApplication extends Application {
 
     public void setSelectedFoodList(ArrayList<SelectedFood> selectedFoodList) {
         this.selectedFoodList = selectedFoodList;
+    }
+
+    /**
+     * 获取总价
+     *
+     * @return
+     */
+    public Long getSumPrice() {
+        long sum = selectedFoodList.get(0).getSum();
+        Iterator<SelectedFood> it = selectedFoodList.iterator();
+
+        while (it.hasNext()) {
+            sum += it.next().getSum();
+        }
+
+        return sum;
     }
 }

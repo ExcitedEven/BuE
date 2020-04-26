@@ -57,7 +57,7 @@ public class LoginActivity extends BaseActivity {
         User user = new User();
         user.setUsername("Even");
         user.setId((long) 1);// 从数据库获取
-        startActivity(BuEApplication.getInstance().getIntent());
+        startActivity(BuEApplication.getInstance().getIntent(), false);
         finish();
     }
 

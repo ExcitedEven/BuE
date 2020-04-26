@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
+import com.excitedeven.bue.activity.CartActivity;
 import com.excitedeven.bue.bean.Food;
 import com.excitedeven.bue.bean.SelectedFood;
 
@@ -35,17 +36,29 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         Food food = selectedFoodList.get(position).getFood();
         int number = selectedFoodList.get(position).getNumber();
         ((CartViewHolder) holder).fname.setText(food.getFname());
-        ((CartViewHolder) holder).fprice.setText(String.valueOf(food.getFprice() * number));
+        ((CartViewHolder) holder).fprice.setText(String.format("%s元", String.valueOf(selectedFoodList.get(position).getSum())));
         ((CartViewHolder) holder).number.setText(String.valueOf(number));
         ((CartViewHolder) holder).rButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO 减少
                 Toast.makeText(BuEApplication.getInstance().getContext(), "减一", Toast.LENGTH_SHORT).show();
+                SelectedFood selectedFood = selectedFoodList.get(position);
+                int number = BuEApplication.getInstance().getSelectedFoodList().indexOf(selectedFood);
+                selectedFood.setNumber(selectedFood.getNumber() - 1);
+                if (selectedFood.getNumber() <= 0) {
+                    BuEApplication.getInstance().getSelectedFoodList().remove(number);
+                    notifyItemRemoved(position);
+                    notifyItemRangeRemoved(position, getItemCount());
+                } else {
+                    BuEApplication.getInstance().getSelectedFoodList().set(number, selectedFood);
+                    notifyItemChanged(position);
+                }
+                ((CartActivity) BuEApplication.getInstance().getContext()).refeshSum();
             }
         });
         ((CartViewHolder) holder).aButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +66,12 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View v) {
                 //TODO 增加
                 Toast.makeText(BuEApplication.getInstance().getContext(), "加一", Toast.LENGTH_SHORT).show();
+                SelectedFood selectedFood = selectedFoodList.get(position);
+                int number = BuEApplication.getInstance().getSelectedFoodList().indexOf(selectedFood);
+                selectedFood.setNumber(selectedFood.getNumber() + 1);
+                BuEApplication.getInstance().getSelectedFoodList().set(number, selectedFood);
+                notifyItemChanged(position);
+                ((CartActivity) BuEApplication.getInstance().getContext()).refeshSum();
             }
         });
     }
