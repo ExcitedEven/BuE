@@ -5,9 +5,5 @@ class Shop {
     var sname: String = ""
     var slogo: String = ""
     var sdescription: String = ""
-    var foodList: ArrayList<Food>
-        get() = foodList
-        set(foodList: ArrayList<Food>) {
-            this.foodList = foodList
-        }
+    var foodList: ArrayList<Food>? = null
 }

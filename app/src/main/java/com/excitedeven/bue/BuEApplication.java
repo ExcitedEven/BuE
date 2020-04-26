@@ -5,18 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.excitedeven.bue.bean.Food;
+import com.excitedeven.bue.bean.Order;
 import com.excitedeven.bue.bean.SelectedFood;
 import com.excitedeven.bue.bean.Shop;
 import com.excitedeven.bue.bean.User;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class BuEApplication extends Application {
     private User user;
     private Shop shop;
     private Food food;
     private ArrayList<SelectedFood> selectedFoodList;
+    private Order order;
+    private ArrayList<Order> orderList;
     private static BuEApplication mInstance;
     private Intent intent;
     private Context context;
@@ -33,6 +35,10 @@ public class BuEApplication extends Application {
 
     public void initUser() {
         //TODO 从本地获取User
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public User getUser() {
@@ -93,11 +99,10 @@ public class BuEApplication extends Application {
         if (!hasSelectedFood()) {
             return 0l;
         }
-        long sum = selectedFoodList.get(0).getSum();
-        Iterator<SelectedFood> it = selectedFoodList.iterator();
+        long sum = 0;
 
-        while (it.hasNext()) {
-            sum += it.next().getSum();
+        for (SelectedFood selectedFood : selectedFoodList) {
+            sum += selectedFood.getSum();
         }
 
         return sum;
@@ -108,5 +113,21 @@ public class BuEApplication extends Application {
             return false;
         }
         return true;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public ArrayList<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(ArrayList<Order> orderList) {
+        this.orderList = orderList;
     }
 }

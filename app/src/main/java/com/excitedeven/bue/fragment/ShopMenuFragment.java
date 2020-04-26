@@ -63,6 +63,7 @@ public class ShopMenuFragment extends Fragment {
     }
 
     private ArrayList<Food> getShopList() {
+        //TODO 获取真实食物列表
         ArrayList<Food> foodList = new ArrayList<Food>();
         Food food;
         for (int i = 0; i <= 10; i++) {
@@ -72,6 +73,7 @@ public class ShopMenuFragment extends Fragment {
             food.setFprice(i);
             foodList.add(food);
         }
-        return foodList;
+        BuEApplication.getInstance().getShop().setFoodList(foodList);
+        return BuEApplication.getInstance().getShop().getFoodList();
     }
 }

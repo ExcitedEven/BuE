@@ -7,4 +7,6 @@ class User : Serializable {
     var username: String = ""
     var email: String = ""
     var logourl: String = ""
+    var adder: String = ""
+    var orderList: ArrayList<Order>? = null
 }

@@ -56,7 +56,11 @@ public class LoginActivity extends BaseActivity {
         //TODO 与数据库比对进行登陆
         User user = new User();
         user.setUsername("Even");
-        user.setId((long) 1);// 从数据库获取
+        user.setId(1);// 从数据库获取
+        user.setAdder("火星");
+        user.setOrderList(null);
+        BuEApplication.getInstance().setUser(user);
+        BuEApplication.getInstance().setOrderList(user.getOrderList());
         startActivity(BuEApplication.getInstance().getIntent(), false);
         finish();
     }
