@@ -74,10 +74,4 @@ public class ShopActivity extends BaseActivity {
             return null;
         }
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BuEApplication.getInstance().setContext(this);
-    }
 }

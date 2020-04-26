@@ -45,10 +45,4 @@ public class PayActivity extends BaseActivity {
             }
         }, 1000);
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BuEApplication.getInstance().setContext(this);
-    }
 }

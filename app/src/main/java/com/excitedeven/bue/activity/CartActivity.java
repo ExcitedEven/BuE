@@ -52,12 +52,6 @@ public class CartActivity extends BaseActivity {
         refeshSum();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BuEApplication.getInstance().setContext(this);
-    }
-
     public void refeshSum() {
         sum.setText(MessageFormat.format("总计{0}元", BuEApplication.getInstance().getSumPrice()));
     }

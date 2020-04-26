@@ -64,10 +64,4 @@ public class LoginActivity extends BaseActivity {
         startActivity(BuEApplication.getInstance().getIntent(), false);
         finish();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BuEApplication.getInstance().setContext(this);
-    }
 }

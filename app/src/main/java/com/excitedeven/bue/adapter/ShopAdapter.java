@@ -1,13 +1,13 @@
 package com.excitedeven.bue.adapter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,8 +49,10 @@ public class ShopAdapter extends RecyclerView.Adapter {
         ((ShopViewHolder) holder).addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 点击添加到购物车
-                Toast.makeText(BuEApplication.getInstance().getContext(), "菜品" + position + "添加", Toast.LENGTH_SHORT).show();
+                /**
+                 * 添加到购物车
+                 */
+                Log.v("ShopAdapter", "菜品" + position + "添加");
                 SelectedFood selectedFood = new SelectedFood();
                 selectedFood.setFood(foodList.get(position));
                 int number = BuEApplication.getInstance().getSelectedFoodList().indexOf(selectedFood);
@@ -68,8 +70,7 @@ public class ShopAdapter extends RecyclerView.Adapter {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO ShopItem的点击事件
-                Toast.makeText(BuEApplication.getInstance().getContext(), "菜品" + position + "onClick", Toast.LENGTH_SHORT).show();
+                Log.v("ShopAdapter", "菜品" + position + "onClick");
                 BuEApplication.getInstance().setFood(foodList.get(position));
                 ((ShopActivity) BuEApplication.getInstance().getContext()).startActivity(new Intent(BuEApplication.getInstance().getContext(), FoodActivity.class), false);
             }

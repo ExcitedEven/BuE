@@ -36,12 +36,6 @@ public class HomeActivity extends BaseActivity {
         homeTabLayout.setupWithViewPager(homePager);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BuEApplication.getInstance().setContext(this);
-    }
-
     /**
      * 管理ViewPager
      */

@@ -1,5 +1,6 @@
 package com.excitedeven.bue.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
+import com.excitedeven.bue.activity.HomeActivity;
+import com.excitedeven.bue.activity.OrderInfoActivity;
 import com.excitedeven.bue.bean.Order;
 import com.excitedeven.bue.bean.User;
 
@@ -23,6 +26,11 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private ArrayList<Order> orderList;
 
+    /**
+     * 没有登陆的话, orderList无法获取
+     *
+     * @param orderList
+     */
     public OrderAdapter(ArrayList<Order> orderList) {
         if (orderList == null) {
             orderList = new ArrayList<Order>();
@@ -39,14 +47,22 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        User user = BuEApplication.getInstance().getUser();
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+        final User user = BuEApplication.getInstance().getUser();
         //TODO 修改商家Image
         ((OrderViewHolder) holder).oimg.setImageResource(R.drawable.ic_launcher_foreground);
         ((OrderViewHolder) holder).oname.setText(user.getOrderList().get(position).getShopName());
         ((OrderViewHolder) holder).otime.setText(stampToDate(user.getOrderList().get(position).getTime()));
         ((OrderViewHolder) holder).ofood.setText(user.getOrderList().get(position).getSelectedFoodList().get(0).getFood().getFname());
         ((OrderViewHolder) holder).oprice.setText(String.format("总计%s元", String.valueOf(user.getOrderList().get(position).getSum())));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuEApplication.getInstance().setSelectedFoodList(user.getOrderList().get(position).getSelectedFoodList());
+                ((HomeActivity)BuEApplication.getInstance().getContext()).startActivity(new Intent(BuEApplication.getInstance().getContext(), OrderInfoActivity.class), true);
+            }
+        });
     }
 
     private String stampToDate(long time) {

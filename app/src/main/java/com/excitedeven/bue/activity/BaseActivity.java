@@ -17,13 +17,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BuEApplication.getInstance().setContext(this);
+    }
+
     protected abstract int getLayoutId();
 
     protected abstract void init();
 
     /**
      * 判断跳转时是否应该先登陆
-     * @param intent 将会传入BuEApplication, 成功登陆后再取出进行跳转
+     *
+     * @param intent      将会传入BuEApplication, 成功登陆后再取出进行跳转
      * @param isNeedLogin 判断是否需要跳转的flag
      */
     public void startActivity(Intent intent, boolean isNeedLogin) {
