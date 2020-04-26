@@ -41,14 +41,14 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_list_item, parent, false);
         ViewHolder vh = new OrderViewHolder(view);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        final User user = BuEApplication.getInstance().getUser();
+        User user = BuEApplication.getInstance().getUser();
         //TODO 修改商家Image
         ((OrderViewHolder) holder).oimg.setImageResource(R.drawable.ic_launcher_foreground);
         ((OrderViewHolder) holder).oname.setText(user.getOrderList().get(position).getShopName());
@@ -59,8 +59,8 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuEApplication.getInstance().setSelectedFoodList(user.getOrderList().get(position).getSelectedFoodList());
-                ((HomeActivity)BuEApplication.getInstance().getContext()).startActivity(new Intent(BuEApplication.getInstance().getContext(), OrderInfoActivity.class), true);
+                BuEApplication.getInstance().setOrder(BuEApplication.getInstance().getUser().getOrderList().get(position));
+                ((HomeActivity) BuEApplication.getInstance().getContext()).startActivity(new Intent(BuEApplication.getInstance().getContext(), OrderInfoActivity.class), true);
             }
         });
     }
