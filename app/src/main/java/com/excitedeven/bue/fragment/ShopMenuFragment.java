@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.excitedeven.bue.R;
 import com.excitedeven.bue.adapter.ShopAdapter;
-import com.excitedeven.bue.bean.Dishes;
+import com.excitedeven.bue.bean.Food;
 
 import java.util.ArrayList;
 
@@ -46,16 +46,16 @@ public class ShopMenuFragment extends Fragment {
 
     }
 
-    private ArrayList<Dishes> getShopList() {
-        ArrayList<Dishes> dishesList = new ArrayList<Dishes>();
-        Dishes dishes;
+    private ArrayList<Food> getShopList() {
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        Food food;
         for (int i = 0; i <= 10; i++) {
-            dishes = new Dishes();
-            dishes.setDname("啊噗鲁派" + i);
-            dishes.setDdescription("能天使最爱" + i);
-            dishes.setDprice(i);
-            dishesList.add(dishes);
+            food = new Food();
+            food.setFname("啊噗鲁派" + i);
+            food.setFdescription("能天使最爱" + i);
+            food.setFprice(i);
+            foodList.add(food);
         }
-        return dishesList;
+        return foodList;
     }
 }

@@ -1,5 +1,6 @@
 package com.excitedeven.bue.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +15,18 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.excitedeven.bue.BuEApplication;
 import com.excitedeven.bue.R;
-import com.excitedeven.bue.bean.Dishes;
+import com.excitedeven.bue.activity.FoodActivity;
+import com.excitedeven.bue.bean.Food;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 
 public class ShopAdapter extends RecyclerView.Adapter {
 
-    private ArrayList<Dishes> dishesList;
+    private ArrayList<Food> foodList;
 
-    public ShopAdapter(ArrayList<Dishes> dishesList) {
-        this.dishesList = dishesList;
+    public ShopAdapter(ArrayList<Food> foodList) {
+        this.foodList = foodList;
     }
 
     @NonNull
@@ -38,10 +40,10 @@ public class ShopAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         //TODO 修改商品Image
-        ((ShopViewHolder) holder).dimg.setImageResource(R.drawable.ic_launcher_foreground);
-        ((ShopViewHolder) holder).dname.setText(dishesList.get(position).getDname());
-        ((ShopViewHolder) holder).ddescription.setText(dishesList.get(position).getDdescription());
-        ((ShopViewHolder) holder).dprice.setText(MessageFormat.format("价格{0}", String.valueOf(dishesList.get(position).getDprice())));
+        ((ShopViewHolder) holder).fimg.setImageResource(R.drawable.ic_launcher_foreground);
+        ((ShopViewHolder) holder).fname.setText(MessageFormat.format("{0}家的{1}", BuEApplication.getInstance().getShop().getSname(), foodList.get(position).getFname()));
+        ((ShopViewHolder) holder).fdescription.setText(foodList.get(position).getFdescription());
+        ((ShopViewHolder) holder).fprice.setText(MessageFormat.format("价格{0}", String.valueOf(foodList.get(position).getFprice())));
         ((ShopViewHolder) holder).addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,29 +57,31 @@ public class ShopAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 //TODO ShopItem的点击事件
                 Toast.makeText(BuEApplication.getInstance().getContext(), "菜品" + position + "onClick", Toast.LENGTH_SHORT).show();
+                BuEApplication.getInstance().setFood(foodList.get(position));
+                BuEApplication.getInstance().getContext().startActivity(new Intent(BuEApplication.getInstance().getContext(), FoodActivity.class));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return dishesList.size();
+        return foodList.size();
     }
 
     private class ShopViewHolder extends ViewHolder {
-        private ImageView dimg;
-        private TextView dname;
-        private TextView ddescription;
-        private TextView dprice;
+        private ImageView fimg;
+        private TextView fname;
+        private TextView fdescription;
+        private TextView fprice;
         private Button addButton;
 
         ShopViewHolder(View view) {
             super(view);
-            dimg = view.findViewById(R.id.shop_dishes_img);
-            dname = view.findViewById(R.id.shop_dishes_name);
-            ddescription = view.findViewById(R.id.shop_dishes_description);
-            dprice = view.findViewById(R.id.shop_dishes_price);
-            addButton = view.findViewById(R.id.shop_dishes_add);
+            fimg = view.findViewById(R.id.shop_foods_img);
+            fname = view.findViewById(R.id.shop_foods_name);
+            fdescription = view.findViewById(R.id.shop_foods_description);
+            fprice = view.findViewById(R.id.shop_foods_price);
+            addButton = view.findViewById(R.id.shop_foods_add);
         }
     }
 }
